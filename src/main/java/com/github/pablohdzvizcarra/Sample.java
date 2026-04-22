@@ -3,9 +3,9 @@ package com.github.pablohdzvizcarra;
 public class Sample {
     private long timestamp;
     private String metricName;
-    private double value;
+    private long value;
 
-    public Sample(long timestamp, String metricName, double value) {
+    public Sample(long timestamp, String metricName, long value) {
         this.timestamp = timestamp;
         this.metricName = metricName;
         this.value = value;
@@ -19,7 +19,7 @@ public class Sample {
         return metricName;
     }
 
-    public double getValue() {
+    public long getValue() {
         return value;
     }
 

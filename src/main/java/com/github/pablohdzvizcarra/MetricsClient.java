@@ -17,15 +17,15 @@ public class MetricsClient {
         List<Sample> samples = dbManager.getSamples(startTime, endTime);
         
         if (samples.isEmpty()) {
-            return new Result(samples, 0.0, 0.0, 0.0, 0);
+            return new Result(samples, 0.0, 0, 0, 0);
         }
 
         double sum = 0;
-        double max = Double.MIN_VALUE;
-        double min = Double.MAX_VALUE;
+        long max = Long.MIN_VALUE;
+        long min = Long.MAX_VALUE;
 
         for (Sample sample : samples) {
-            double val = sample.getValue();
+            long val = sample.getValue();
             sum += val;
             if (val > max) max = val;
             if (val < min) min = val;

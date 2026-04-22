@@ -1,11 +1,15 @@
 package com.github.pablohdzvizcarra;
 
+import java.util.logging.Logger;
+
 /**
  * Hello world!
  */
 public class KernelPulseApp {
+    private static final Logger log = Logger.getLogger(KernelPulseApp.class.getName());
+
     public static void main(String[] args) {
-        System.out.println("Starting Kernel Pulse Application...");
+        log.info("Starting Kernel Pulse Application...");
         
         DatabaseManager dbManager = new DatabaseManager();
         Collector collector = new Collector(dbManager);
@@ -14,6 +18,6 @@ public class KernelPulseApp {
         // Run every 1 minute
         scheduler.scheduleAtFixedRate(collector, 0, 1, java.util.concurrent.TimeUnit.MINUTES);
         
-        System.out.println("Collector scheduled to run every 1 minute. Press Ctrl+C to exit.");
+        log.info("Collector scheduled to run every 1 minute");
     }
 }

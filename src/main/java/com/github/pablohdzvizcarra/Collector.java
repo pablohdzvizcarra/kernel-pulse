@@ -3,8 +3,11 @@ package com.github.pablohdzvizcarra;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.logging.Logger;
 
 public class Collector implements Runnable {
+    private static final Logger log = Logger.getLogger(Collector.class.getName());
     private final DatabaseManager dbManager;
 
     public Collector(DatabaseManager dbManager) {
@@ -18,19 +21,20 @@ public class Collector implements Runnable {
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("MemFree:")) {
                     String[] parts = line.trim().split("\\s+");
+                    System.out.println("DEBUG: " + Arrays.toString(parts));
                     if (parts.length >= 2) {
-                        double freeMemKb = Double.parseDouble(parts[1]);
+                        long freeMemKb = Long.parseLong(parts[1]);
                         Sample sample = new Sample(System.currentTimeMillis(), "memory_free", freeMemKb);
                         dbManager.insertSample(sample);
-                        System.out.println("Collector: Inserted " + sample);
+                        log.info(() -> "Collector: Inserted " + sample);
                     }
                     break;
                 }
             }
         } catch (IOException e) {
-            System.err.println("Collector failed to read /proc/meminfo: " + e.getMessage());
+            log.severe(() -> "Collector failed to read /proc/meminfo: " + e.getMessage());
         } catch (Exception e) {
-            System.err.println("Collector encountered an error: " + e.getMessage());
+            log.severe(() -> "Collector encountered an error: " + e.getMessage());
         }
     }
 }

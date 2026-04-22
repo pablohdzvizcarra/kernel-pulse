@@ -19,7 +19,7 @@ public class DatabaseManager {
     }
 
     public void insertSample(Sample sample) {
-        String query = String.format("INSERT INTO memory_samples (timestamp, metric_name, value) VALUES (%d, '%s', %f);",
+        String query = String.format("INSERT INTO memory_samples (timestamp, metric_name, value) VALUES (%d, '%s', %d);",
                 sample.getTimestamp(), sample.getMetricName(), sample.getValue());
         executeSql(query);
     }
@@ -40,7 +40,7 @@ public class DatabaseManager {
                 if (parts.length == 3) {
                     long timestamp = Long.parseLong(parts[0]);
                     String metricName = parts[1];
-                    double value = Double.parseDouble(parts[2]);
+                    long value = (long) Double.parseDouble(parts[2]);
                     samples.add(new Sample(timestamp, metricName, value));
                 }
             }

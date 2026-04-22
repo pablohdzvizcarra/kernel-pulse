@@ -5,11 +5,11 @@ import java.util.List;
 public class Result {
     private List<Sample> samples;
     private double average;
-    private double max;
-    private double min;
+    private long max;
+    private long min;
     private int count;
 
-    public Result(List<Sample> samples, double average, double max, double min, int count) {
+    public Result(List<Sample> samples, double average, long max, long min, int count) {
         this.samples = samples;
         this.average = average;
         this.max = max;
@@ -25,11 +25,11 @@ public class Result {
         return average;
     }
 
-    public double getMax() {
+    public long getMax() {
         return max;
     }
 
-    public double getMin() {
+    public long getMin() {
         return min;
     }
 
