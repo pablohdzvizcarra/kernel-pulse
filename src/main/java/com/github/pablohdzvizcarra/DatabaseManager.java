@@ -17,7 +17,7 @@ public class DatabaseManager {
     }
 
     private void initDatabase() {
-        String query = "CREATE TABLE IF NOT EXISTS metrics (timestamp INTEGER PRIMARY KEY, metric_name TEXT, value REAL, tags TEXT); " +
+        String query = "CREATE TABLE IF NOT EXISTS metrics (timestamp INTEGER, metric_name TEXT, value REAL, tags TEXT); " +
                        "CREATE INDEX IF NOT EXISTS idx_metrics_name_time ON metrics(metric_name, timestamp);";
         executeSql(query);
     }

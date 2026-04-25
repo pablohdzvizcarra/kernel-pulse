@@ -3,6 +3,7 @@ package com.github.pablohdzvizcarra;
 import java.util.logging.Logger;
 
 import com.github.pablohdzvizcarra.collector.FreeRamMemoryCollector;
+import com.github.pablohdzvizcarra.collector.NetworkBytesCollector;
 
 /**
  * Hello world!
@@ -14,12 +15,14 @@ public class KernelPulseApp {
         log.info("Starting Kernel Pulse Application...");
         
         DatabaseManager dbManager = new DatabaseManager();
-        FreeRamMemoryCollector collector = new FreeRamMemoryCollector(dbManager);
+        FreeRamMemoryCollector ramCollector = new FreeRamMemoryCollector(dbManager);
+        NetworkBytesCollector networkCollector = new NetworkBytesCollector(dbManager);
         
-        java.util.concurrent.ScheduledExecutorService scheduler = java.util.concurrent.Executors.newScheduledThreadPool(1);
+        java.util.concurrent.ScheduledExecutorService scheduler = java.util.concurrent.Executors.newScheduledThreadPool(2);
         // Run every 1 minute
-        scheduler.scheduleAtFixedRate(collector, 0, 1, java.util.concurrent.TimeUnit.MINUTES);
+        scheduler.scheduleAtFixedRate(ramCollector, 0, 1, java.util.concurrent.TimeUnit.MINUTES);
+        scheduler.scheduleAtFixedRate(networkCollector, 0, 1, java.util.concurrent.TimeUnit.MINUTES);
         
-        log.info("Collector scheduled to run every 1 minute");
+        log.info("Collectors scheduled to run every 1 minute");
     }
 }

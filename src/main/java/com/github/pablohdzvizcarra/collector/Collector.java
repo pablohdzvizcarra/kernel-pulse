@@ -1,13 +1,15 @@
 package com.github.pablohdzvizcarra.collector;
 
+import java.util.List;
+
 import com.github.pablohdzvizcarra.metric.Sample;
 
 public interface Collector extends Runnable {
 
     /**
-     * Generates a new sample for the specific metric.
+     * Generates samples for the specific metric.
      * 
-     * @return Sample with metric data
+     * @return List of Samples with metric data
      */
-    Sample generateSample();
+    List<Sample> generateSamples();
 }

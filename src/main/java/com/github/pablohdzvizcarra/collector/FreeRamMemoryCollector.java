@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.logging.Logger;
 
 import com.github.pablohdzvizcarra.DatabaseManager;
@@ -20,18 +22,20 @@ public class FreeRamMemoryCollector implements Collector {
 
     @Override
     public void run() {
-        Sample sample = generateSample();
+        List<Sample> samples = generateSamples();
 
-        if (sample != null) {
-            dbManager.insertSample(sample);
-            log.info(() -> "Collector: Inserted " + sample);
+        if (samples != null && !samples.isEmpty()) {
+            for (Sample sample : samples) {
+                dbManager.insertSample(sample);
+                log.info(() -> "Collector: Inserted " + sample);
+            }
         } else {
-            log.warning(() -> "Collector: Failed to generate sample");
+            log.warning(() -> "Collector: Failed to generate samples");
         }
     }
     
     @Override
-    public Sample generateSample() {
+    public List<Sample> generateSamples() {
         Sample sample = null;
         
         try (BufferedReader reader = new BufferedReader(new FileReader("/proc/meminfo"))) {
@@ -53,6 +57,9 @@ public class FreeRamMemoryCollector implements Collector {
             log.severe(() -> "Collector encountered an error: " + e.getMessage());
         }
 
-        return sample;
+        if (sample != null) {
+            return Collections.singletonList(sample);
+        }
+        return Collections.emptyList();
     }
 }
