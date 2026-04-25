@@ -2,6 +2,8 @@ package com.github.pablohdzvizcarra;
 
 import java.util.List;
 
+import com.github.pablohdzvizcarra.metric.Sample;
+
 public class Result {
     private List<Sample> samples;
     private double average;

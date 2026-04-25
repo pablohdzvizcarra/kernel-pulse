@@ -3,6 +3,8 @@ package com.github.pablohdzvizcarra;
 import java.util.Calendar;
 import java.util.List;
 
+import com.github.pablohdzvizcarra.metric.Sample;
+
 public class MetricsClient {
     private final DatabaseManager dbManager;
 

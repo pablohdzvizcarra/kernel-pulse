@@ -2,6 +2,8 @@ package com.github.pablohdzvizcarra;
 
 import java.util.logging.Logger;
 
+import com.github.pablohdzvizcarra.collector.FreeRamMemoryCollector;
+
 /**
  * Hello world!
  */
@@ -12,7 +14,7 @@ public class KernelPulseApp {
         log.info("Starting Kernel Pulse Application...");
         
         DatabaseManager dbManager = new DatabaseManager();
-        Collector collector = new Collector(dbManager);
+        FreeRamMemoryCollector collector = new FreeRamMemoryCollector(dbManager);
         
         java.util.concurrent.ScheduledExecutorService scheduler = java.util.concurrent.Executors.newScheduledThreadPool(1);
         // Run every 1 minute

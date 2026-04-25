@@ -2,6 +2,8 @@ package com.github.pablohdzvizcarra;
 
 import java.util.Calendar;
 
+import com.github.pablohdzvizcarra.metric.Sample;
+
 public class DemoClient {
     public static void main(String[] args) {
         DatabaseManager dbManager = new DatabaseManager();
