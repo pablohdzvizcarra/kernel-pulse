@@ -1,6 +1,6 @@
 # Telemetry Metrics Refactoring
 
-Based on the research from `.agent/learning/pending-learning-items.md` and `.agent/skills/telemetry-mentor.md`, the best approach for expanding our metrics collection (e.g., adding network bytes) is to use a **generic `Sample` class with tags** instead of subclasses. This follows the narrow, dimensional time-series data modeling pattern.
+Based on the research from `agent/learning/pending-learning-items.md` and `agent/skills/telemetry-mentor.md`, the best approach for expanding our metrics collection (e.g., adding network bytes) is to use a **generic `Sample` class with tags** instead of subclasses. This follows the narrow, dimensional time-series data modeling pattern.
 
 ## User Review Required
 
@@ -39,4 +39,4 @@ Based on the research from `.agent/learning/pending-learning-items.md` and `.age
 - Verify `DatabaseManager` can successfully insert and query samples with tags using `sqlite3` CLI or a small demo script.
 
 ### Manual Verification
-- Review the `/home/ubuntu/GitHub/kernel-pulse/.agent/metrics-collector/sample-refactor-research.md` document for the theoretical justification.
+- Review the `/home/ubuntu/GitHub/kernel-pulse/agent/metrics-collector/sample-refactor-research.md` document for the theoretical justification.

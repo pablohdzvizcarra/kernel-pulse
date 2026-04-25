@@ -1,55 +1,46 @@
-# kernel-pulse — Modular Agent System
+# 🛰️ Kernel Pulse — Modular Agent System
 
-> This file is the root index for all agent documentation modules. Each module lives in its own folder under `.agent/` and is self-contained with its own README, plans, and decision logs.
-
----
-
-## Module Index
-
-| Module | Path | Status | Description |
-|:---|:---|:---|:---|
-| **Context** | [`.agent/context/`](./context/) | ✅ Active | Core project concepts and architecture overview |
-| **Skills** | [`.agent/skills/`](./skills/) | ✅ Active | Reusable agent skill definitions (TelemetryMentor, etc.) |
-| **Learning** | [`.agent/learning/`](./learning/) | ✅ Active | Pending and completed learning items |
-| **Metrics Collector** | [`.agent/metrics-collector/`](./metrics-collector/) | ✅ Complete | Implementation plans for the core metrics collection features |
-| **Delta Calculation** | [`.agent/delta-calculation/`](./delta-calculation/) | 🟡 Planning | Delta computation for counters (network bytes) and gauges (free RAM) |
-| **Agents** | [`.agent/agents/`](./agents/) | 📋 Reserved | Agent role definitions (future use) |
-| **Workflow** | [`.agent/workflow/`](./workflow/) | 📋 Reserved | CI/CD and development workflow documentation |
+> This file serves as the **Control Plane** for all agent documentation. Each module is a self-contained ecosystem within its own directory, following a standardized modular architecture to prevent documentation bloat.
 
 ---
 
-## How This System Works
+## 📂 Module Registry
 
-Each feature or concern gets its own folder under `.agent/`. Every module folder follows a consistent structure:
-
-```
-.agent/<module-name>/
-├── README.md                  # Module overview, purpose, and document index
-├── implementation-plan.md     # Technical plan for code changes
-├── theory.md                  # Conceptual background (if applicable)
-├── decisions.md               # Design decisions and trade-offs log
-└── ...                        # Additional module-specific documents
-```
-
-### Conventions
-
-1. **README.md is the entry point** — Always start reading a module from its README.
-2. **Status badges** — Each module tracks its status: 📋 Reserved → 🟡 Planning → 🔵 In Progress → ✅ Complete
-3. **Cross-references** — Documents link to related modules, skills, and learning items.
-4. **Decisions are logged** — Non-obvious choices are recorded in `decisions.md` with date, context, and rationale.
-5. **Implementation plans match code** — Plans reference actual file paths in `src/` and include verifiable test cases.
+| Module                | Location                                           | Status     | Core Responsibility                               |
+| :-------------------- | :------------------------------------------------- | :--------- | :------------------------------------------------ |
+| **Project Context**   | [`agent/context/`](./context/)                     | ✅ Active   | High-level architecture and time-series concepts. |
+| **Agent Skills**      | [`agent/skills/`](./skills/)                       | ✅ Active   | Specialized capabilities (e.g., TelemetryMentor). |
+| **Learning Path**     | [`agent/learning/`](./learning/)                   | ✅ Active   | Theoretical knowledge base and progress tracking. |
+| **Metrics Collector** | [`agent/metrics-collector/`](./metrics-collector/) | ✅ Complete | Ingestion logic for RAM and Network telemetry.    |
+| **Delta Calculation** | [`agent/delta-calculation/`](./delta-calculation/) | ✅ Complete | Computation of rates, ratios, and counter deltas. |
+| **Agents**            | [`agent/agents/`](./agents/)                       | 📋 Reserved | Future agent role definitions and personas.       |
+| **Workflow**          | [`agent/workflow/`](./workflow/)                   | 📋 Reserved | CI/CD and development lifecycle standards.        |
 
 ---
 
-## Feature Development Flow
+## 🛠️ The Modular Documentation Pattern
 
-```
-1. Create module folder:  .agent/<feature-name>/
-2. Write theory.md:       Understand the concept first
-3. Write decisions.md:    Record key design choices
-4. Write plan.md:         Detail every file change
-5. Get user approval:     Review the plan
-6. Implement:             Write the code
-7. Verify:                Run tests, manual checks
-8. Update status:         Mark module as ✅ Complete
-```
+To avoid creating "Big and Complex" files, this project follows the **Atomic Documentation** principle:
+
+### 1. The Directory is the Module
+Every major feature or concern has its own folder. Never add a new top-level `.md` file if it can be grouped into a module.
+
+### 2. The `README.md` is the Entry Point
+Each folder **MUST** contain a `README.md`. This file acts as the "receptionist" for that module, indexing all internal documents (Theory, Plans, Decisions).
+
+### 3. Cross-Module Referencing
+Modules should link to each other rather than duplicating information. For example, the *Delta Calculation* plan links to *Agent Skills* for theoretical context.
+
+---
+
+## 🚀 Feature Development Workflow
+
+When starting a new feature, follow this modular flow:
+
+1.  **Initialize**: Create `agent/<feature-name>/`.
+2.  **Theory**: Write `theory.md` to understand the *why*.
+3.  **Decisions**: Record design trade-offs in `decisions.md`.
+4.  **Plan**: Draft the technical changes in `implementation-plan.md`.
+5.  **Build & Verify**: Implement the code and run tests.
+6.  **Close**: Update the module `README.md` and mark the status as ✅ Complete in this index.
+****
