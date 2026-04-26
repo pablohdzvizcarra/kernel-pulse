@@ -6,7 +6,7 @@
 This module defines the core concepts, terminology, and high-level architecture of the **kernel-pulse** telemetry system. It is designed to get any agent or developer up to speed on how we handle time-series data in SQLite.
 
 ## Documents
-- [**Architecture & Concepts**](./context.md) — Understanding samples, sampling rates, and performance database patterns.
+- [**Architecture & Concepts**](./architecture.md) — Understanding samples, sampling rates, and performance database patterns.
 
 ## Quick Reference
 | Concept | Definition |

@@ -6,15 +6,16 @@
 
 ## 📂 Module Registry
 
-| Module                | Location                                           | Status     | Core Responsibility                               |
-| :-------------------- | :------------------------------------------------- | :--------- | :------------------------------------------------ |
-| **Project Context**   | [`agent/context/`](./context/)                     | ✅ Active   | High-level architecture and time-series concepts. |
-| **Agent Skills**      | [`agent/skills/`](./skills/)                       | ✅ Active   | Specialized capabilities (e.g., TelemetryMentor). |
-| **Learning Path**     | [`agent/learning/`](./learning/)                   | ✅ Active   | Theoretical knowledge base and progress tracking. |
-| **Metrics Collector** | [`agent/metrics-collector/`](./metrics-collector/) | ✅ Complete | Ingestion logic for RAM and Network telemetry.    |
-| **Delta Calculation** | [`agent/delta-calculation/`](./delta-calculation/) | ✅ Complete | Computation of rates, ratios, and counter deltas. |
-| **Agents**            | [`agent/agents/`](./agents/)                       | 📋 Reserved | Future agent role definitions and personas.       |
-| **Workflow**          | [`agent/workflow/`](./workflow/)                   | 📋 Reserved | CI/CD and development lifecycle standards.        |
+| Module                   | Location                                           | Status     | Core Responsibility                               |
+| :----------------------- | :------------------------------------------------- | :--------- | :------------------------------------------------ |
+| **Project Architecture** | [`agent/architecture/`](./architecture/)           | ✅ Active   | High-level architecture and time-series concepts. |
+| **Agent Skills**         | [`agent/skills/`](./skills/)                       | ✅ Active   | Specialized capabilities (e.g., TelemetryMentor). |
+| **Learning Path**        | [`agent/learning/`](./learning/)                   | ✅ Active   | Theoretical knowledge base and progress tracking. |
+| **Metrics Collector**    | [`agent/metrics-collector/`](./metrics-collector/) | ✅ Complete | Ingestion logic for RAM and Network telemetry.    |
+| **Delta Calculation**    | [`agent/delta-calculation/`](./delta-calculation/) | ✅ Complete | Computation of rates, ratios, and counter deltas. |
+| **Research**             | [`agent/research/`](./research/)                   | ✅ Active   | Industry patterns and alternative design studies. |
+| **Agents**               | [`agent/agents/`](./agents/)                       | 📋 Reserved | Future agent role definitions and personas.       |
+| **Workflow**             | [`agent/workflow/`](./workflow/)                   | ✅ Active   | CI/CD and development lifecycle standards.        |
 
 ---
 
