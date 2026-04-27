@@ -22,3 +22,7 @@ sqlite3 metrics.db "SELECT * FROM metrics WHERE metric_name LIKE 'network_bytes_
 ```bash
 sqlite3 metrics.db "SELECT * FROM metrics WHERE metric_name = 'network_bytes_read' AND json_extract(tags, '$.interface') = 'enp0s6';"
 ```
+
+```bash
+sqlite3 metrics.db "SELECT * FROM disk_io_metrics;"
+```

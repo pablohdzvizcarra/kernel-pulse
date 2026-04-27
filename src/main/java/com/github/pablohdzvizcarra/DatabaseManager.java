@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.github.pablohdzvizcarra.metric.DiskIoSample;
 import com.github.pablohdzvizcarra.metric.Sample;
 
 public class DatabaseManager {
@@ -18,7 +19,13 @@ public class DatabaseManager {
 
     private void initDatabase() {
         String query = "CREATE TABLE IF NOT EXISTS metrics (timestamp INTEGER, metric_name TEXT, value REAL, tags TEXT); " +
-                       "CREATE INDEX IF NOT EXISTS idx_metrics_name_time ON metrics(metric_name, timestamp);";
+                       "CREATE INDEX IF NOT EXISTS idx_metrics_name_time ON metrics(metric_name, timestamp); " +
+                       "CREATE TABLE IF NOT EXISTS disk_io_metrics (" +
+                       "timestamp INTEGER, device_name TEXT, " +
+                       "reads_completed INTEGER, sectors_read INTEGER, " +
+                       "writes_completed INTEGER, sectors_written INTEGER, " +
+                       "reads_delta INTEGER, sectors_read_delta INTEGER, " +
+                       "writes_delta INTEGER, sectors_written_delta INTEGER);";
         executeSql(query);
     }
 
@@ -26,6 +33,19 @@ public class DatabaseManager {
         String tagsJson = serializeTags(sample.getTags());
         String query = String.format("INSERT INTO metrics (timestamp, metric_name, value, tags) VALUES (%d, '%s', %d, '%s');",
                 sample.getTimestamp(), sample.getMetricName(), sample.getValue(), tagsJson);
+        executeSql(query);
+    }
+
+    public void insertDiskIoSample(DiskIoSample sample) {
+        String query = String.format("INSERT INTO disk_io_metrics " +
+                "(timestamp, device_name, reads_completed, sectors_read, writes_completed, sectors_written, " +
+                "reads_delta, sectors_read_delta, writes_delta, sectors_written_delta) " +
+                "VALUES (%d, '%s', %d, %d, %d, %d, %d, %d, %d, %d);",
+                sample.getTimestamp(), sample.getDeviceName(), 
+                sample.getReadsCompleted(), sample.getSectorsRead(), 
+                sample.getWritesCompleted(), sample.getSectorsWritten(),
+                sample.getReadsCompletedDelta(), sample.getSectorsReadDelta(), 
+                sample.getWritesCompletedDelta(), sample.getSectorsWrittenDelta());
         executeSql(query);
     }
 
