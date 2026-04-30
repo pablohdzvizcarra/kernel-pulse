@@ -25,7 +25,9 @@ public class DatabaseManager {
                        "reads_completed INTEGER, sectors_read INTEGER, " +
                        "writes_completed INTEGER, sectors_written INTEGER, " +
                        "reads_delta INTEGER, sectors_read_delta INTEGER, " +
-                       "writes_delta INTEGER, sectors_written_delta INTEGER);";
+                       "writes_delta INTEGER, sectors_written_delta INTEGER, " +
+                       "reads_rate REAL, sectors_read_rate REAL, " +
+                       "writes_rate REAL, sectors_written_rate REAL);";
         executeSql(query);
     }
 
@@ -39,13 +41,16 @@ public class DatabaseManager {
     public void insertDiskIoSample(DiskIoSample sample) {
         String query = String.format("INSERT INTO disk_io_metrics " +
                 "(timestamp, device_name, reads_completed, sectors_read, writes_completed, sectors_written, " +
-                "reads_delta, sectors_read_delta, writes_delta, sectors_written_delta) " +
-                "VALUES (%d, '%s', %d, %d, %d, %d, %d, %d, %d, %d);",
+                "reads_delta, sectors_read_delta, writes_delta, sectors_written_delta, " +
+                "reads_rate, sectors_read_rate, writes_rate, sectors_written_rate) " +
+                "VALUES (%d, '%s', %d, %d, %d, %d, %d, %d, %d, %d, %f, %f, %f, %f);",
                 sample.getTimestamp(), sample.getDeviceName(), 
                 sample.getReadsCompleted(), sample.getSectorsRead(), 
                 sample.getWritesCompleted(), sample.getSectorsWritten(),
                 sample.getReadsCompletedDelta(), sample.getSectorsReadDelta(), 
-                sample.getWritesCompletedDelta(), sample.getSectorsWrittenDelta());
+                sample.getWritesCompletedDelta(), sample.getSectorsWrittenDelta(),
+                sample.getReadsRate(), sample.getSectorsReadRate(),
+                sample.getWritesRate(), sample.getSectorsWrittenRate());
         executeSql(query);
     }
 

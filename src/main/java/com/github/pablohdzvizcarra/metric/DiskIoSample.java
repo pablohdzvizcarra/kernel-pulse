@@ -13,12 +13,19 @@ public class DiskIoSample extends Sample {
     private final long sectorsReadDelta;
     private final long writesCompletedDelta;
     private final long sectorsWrittenDelta;
+    
+    private final double readsRate;
+    private final double sectorsReadRate;
+    private final double writesRate;
+    private final double sectorsWrittenRate;
 
     public DiskIoSample(long timestamp, String deviceName, 
                         long readsCompleted, long sectorsRead, 
                         long writesCompleted, long sectorsWritten,
                         long readsCompletedDelta, long sectorsReadDelta, 
                         long writesCompletedDelta, long sectorsWrittenDelta,
+                        double readsRate, double sectorsReadRate,
+                        double writesRate, double sectorsWrittenRate,
                         Map<String, String> tags) {
         // We use "disk_io" as the general metricName and 0 for the generic value
         super(timestamp, "disk_io", 0, tags);
@@ -31,6 +38,10 @@ public class DiskIoSample extends Sample {
         this.sectorsReadDelta = sectorsReadDelta;
         this.writesCompletedDelta = writesCompletedDelta;
         this.sectorsWrittenDelta = sectorsWrittenDelta;
+        this.readsRate = readsRate;
+        this.sectorsReadRate = sectorsReadRate;
+        this.writesRate = writesRate;
+        this.sectorsWrittenRate = sectorsWrittenRate;
     }
 
     public String getDeviceName() { return deviceName; }
@@ -43,6 +54,11 @@ public class DiskIoSample extends Sample {
     public long getSectorsReadDelta() { return sectorsReadDelta; }
     public long getWritesCompletedDelta() { return writesCompletedDelta; }
     public long getSectorsWrittenDelta() { return sectorsWrittenDelta; }
+
+    public double getReadsRate() { return readsRate; }
+    public double getSectorsReadRate() { return sectorsReadRate; }
+    public double getWritesRate() { return writesRate; }
+    public double getSectorsWrittenRate() { return sectorsWrittenRate; }
 
     @Override
     public String toString() {
@@ -57,6 +73,10 @@ public class DiskIoSample extends Sample {
                 ", sectorsReadDelta=" + sectorsReadDelta +
                 ", writesCompletedDelta=" + writesCompletedDelta +
                 ", sectorsWrittenDelta=" + sectorsWrittenDelta +
+                ", readsRate=" + readsRate +
+                ", sectorsReadRate=" + sectorsReadRate +
+                ", writesRate=" + writesRate +
+                ", sectorsWrittenRate=" + sectorsWrittenRate +
                 ", tags=" + getTags() +
                 '}';
     }

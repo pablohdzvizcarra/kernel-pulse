@@ -13,6 +13,7 @@ import com.github.pablohdzvizcarra.DatabaseManager;
 import com.github.pablohdzvizcarra.metric.DeltaCalculator;
 import com.github.pablohdzvizcarra.metric.DiskIoSample;
 import com.github.pablohdzvizcarra.metric.MetricType;
+import com.github.pablohdzvizcarra.metric.RateCalculator;
 import com.github.pablohdzvizcarra.metric.Sample;
 
 public class DiskIoCollector implements Collector {
@@ -71,18 +72,30 @@ public class DiskIoCollector implements Collector {
                     long sectorsReadDelta = 0;
                     long writesCompletedDelta = 0;
                     long sectorsWrittenDelta = 0;
+
+                    double readsRate = 0.0;
+                    double sectorsReadRate = 0.0;
+                    double writesRate = 0.0;
+                    double sectorsWrittenRate = 0.0;
                     
                     if (previous != null) {
                         readsCompletedDelta = DeltaCalculator.computeDelta(previous.getReadsCompleted(), readsCompleted, MetricType.COUNTER);
                         sectorsReadDelta = DeltaCalculator.computeDelta(previous.getSectorsRead(), sectorsRead, MetricType.COUNTER);
                         writesCompletedDelta = DeltaCalculator.computeDelta(previous.getWritesCompleted(), writesCompleted, MetricType.COUNTER);
                         sectorsWrittenDelta = DeltaCalculator.computeDelta(previous.getSectorsWritten(), sectorsWritten, MetricType.COUNTER);
+                        
+                        long elapsedMs = currentTimestamp - previous.getTimestamp();
+                        readsRate = RateCalculator.computeRatePerSecond(readsCompletedDelta, elapsedMs);
+                        sectorsReadRate = RateCalculator.computeRatePerSecond(sectorsReadDelta, elapsedMs);
+                        writesRate = RateCalculator.computeRatePerSecond(writesCompletedDelta, elapsedMs);
+                        sectorsWrittenRate = RateCalculator.computeRatePerSecond(sectorsWrittenDelta, elapsedMs);
                     }
 
                     DiskIoSample currentSample = new DiskIoSample(
                             currentTimestamp, deviceName,
                             readsCompleted, sectorsRead, writesCompleted, sectorsWritten,
                             readsCompletedDelta, sectorsReadDelta, writesCompletedDelta, sectorsWrittenDelta,
+                            readsRate, sectorsReadRate, writesRate, sectorsWrittenRate,
                             new HashMap<>() // tags
                     );
                     

@@ -42,6 +42,14 @@ Modules should link to each other rather than duplicating information. For examp
 
 ---
 
+## 📝 Code Modification Guidelines
+
+1. **Always Document Code Changes**: EVERY TIME you make a code change in a file for ANY reason (e.g., bug fix, new feature, refactoring), you MUST automatically document the detailed code change into an appropriate `agent/` module.
+2. **Default Behavior**: You must perform this documentation step by default for EVERY request, without requiring the user to explicitly ask for it.
+3. **Module Placement**: Document the change in the specific module (directory) that is related to the code being modified (e.g., appending to a `changes.md` or `implementation-plan.md` file). If an appropriate module does not exist for the modified code, you MUST create a new module (a new directory with a `README.md` and a `changes.md` file) to track it.
+
+---
+
 ## 🚀 Feature Development Workflow
 
 When starting a new feature, follow this modular flow:
