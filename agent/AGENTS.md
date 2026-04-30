@@ -15,7 +15,7 @@
 | **Delta Calculation**    | [`agent/delta-calculation/`](./delta-calculation/) | ✅ Complete | Computation of rates, ratios, and counter deltas. |
 | **Research**             | [`agent/research/`](./research/)                   | ✅ Active   | Industry patterns and alternative design studies. |
 | **Agents**               | [`agent/agents/`](./agents/)                       | 📋 Reserved | Future agent role definitions and personas.       |
-| **Workflow**             | [`agent/workflow/`](./workflow/)                   | ✅ Active   | CI/CD and development lifecycle standards.        |
+| **Workflow**             | [`agent/workflow/`](./workflow/)             ****  | ✅ Active   | CI/CD and development lifecycle standards.        |
 
 ---
 
@@ -31,6 +31,14 @@ Each folder **MUST** contain a `README.md`. This file acts as the "receptionist"
 
 ### 3. Cross-Module Referencing
 Modules should link to each other rather than duplicating information. For example, the *Delta Calculation* plan links to *Agent Skills* for theoretical context.
+
+---
+
+## 📖 Research Documentation Guidelines
+
+1. **Always Record Research**: Any new research performed MUST be recorded in a markdown file.
+2. **Auto-Generate Markdown**: Always generate the research into a markdown file automatically without asking for manual confirmation from the user.
+3. **Module Placement**: If you don't find an existing module in the `agent/` folder that is related to the research, create a new module (directory with a `README.md`) for it.
 
 ---
 

@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.github.pablohdzvizcarra.metric.Sample;
 
-public interface Collector extends Runnable {
+public interface Collector extends Runnable, MetricPaths {
 
     /**
      * Generates samples for the specific metric.

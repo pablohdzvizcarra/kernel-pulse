@@ -38,7 +38,7 @@ public class FreeRamMemoryCollector implements Collector {
     public List<Sample> generateSamples() {
         Sample sample = null;
         
-        try (BufferedReader reader = new BufferedReader(new FileReader("/proc/meminfo"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(PROC_MEMINFO))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (line.startsWith("MemFree:")) {

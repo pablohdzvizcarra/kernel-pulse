@@ -23,6 +23,7 @@ This module adds **delta calculation** capabilities to kernel-pulse. A delta is 
 | File | Purpose |
 |:---|:---|
 | [theory.md](./theory.md) | Conceptual background: why delta works differently for counters vs gauges |
+| [formulas-research.md](./formulas-research.md) | Research on how Rate, Ratio, and Average Latency apply to the project's current metrics |
 | [implementation-plan.md](./implementation-plan.md) | Step-by-step technical plan for the code changes |
 | [decisions.md](./decisions.md) | Design decisions and trade-offs recorded during development |
 

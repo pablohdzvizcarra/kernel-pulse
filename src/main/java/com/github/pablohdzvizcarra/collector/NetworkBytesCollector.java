@@ -39,7 +39,7 @@ public class NetworkBytesCollector implements Collector {
         List<Sample> samples = new ArrayList<>();
         long timestamp = System.currentTimeMillis();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("/proc/net/dev"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(PROC_NET_DEV))) {
             String line;
             int lineCount = 0;
             while ((line = reader.readLine()) != null) {

@@ -47,7 +47,7 @@ public class DiskIoCollector implements Collector {
         List<Sample> samples = new ArrayList<>();
         long currentTimestamp = System.currentTimeMillis();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("/proc/diskstats"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(PROC_DISKSTATS))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.trim().split("\\s+");
