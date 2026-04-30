@@ -33,9 +33,9 @@ public class DiskIoCollector implements Collector {
         List<Sample> samples = generateSamples();
         if (samples != null && !samples.isEmpty()) {
             for (Sample sample : samples) {
-                if (sample instanceof DiskIoSample) {
-                    dbManager.insertDiskIoSample((DiskIoSample) sample);
-                    log.info(() -> "Collector: Inserted " + sample);
+                if (sample instanceof DiskIoSample diskIoSample) {
+                    dbManager.insertDiskIoSample(diskIoSample);
+                    log.info(() -> "Collector: Inserted " + diskIoSample);
                 }
             }
         } else {

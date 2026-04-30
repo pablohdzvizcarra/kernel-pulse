@@ -68,7 +68,7 @@ public class NetworkBytesCollector implements Collector {
                         samples.add(new Sample(timestamp, "network_bytes_read", readBytes, tags));
                         samples.add(new Sample(timestamp, "network_bytes_written", writtenBytes, tags));
                     } catch (NumberFormatException e) {
-                        log.warning("Failed to parse metric values for interface: " + interfaceName);
+                        log.warning(() -> "Failed to parse metric values for interface: " + interfaceName);
                     }
                 }
             }
